@@ -458,7 +458,7 @@ Error: Wrong password or invalid baseline file
 
 โปรแกรมทำงานผ่าน CLI เพราะใช้งานง่าย ทดสอบง่าย และเหมาะกับเครื่องมือด้าน Security หรือ Automation
 
-สำหรับระบบเข้ารหัส baseline ในโปรเจกต์นี้ ใช้วิธี XOR กับ key ที่สร้างจาก password เพื่อให้โค้ดเข้าใจง่าย เหมาะสำหรับผู้เริ่มต้นเรียน Rust แต่ถ้าใช้งานจริงควรใช้ encryption library ที่ปลอดภัยกว่า เช่น AES-GCM
+สำหรับระบบเข้ารหัส baseline ในโปรเจกต์นี้ ใช้วิธี XOR กับ key ที่สร้างจาก password เพื่อให้โค้ดเข้าใจง่าย แต่ถ้าใช้งานจริงควรใช้ encryption library ที่ปลอดภัยกว่า เช่น AES-GCM
 
 ---
 
@@ -535,47 +535,10 @@ rm test_folder/config.txt
 cargo run -- check ./test_folder
 
 cat report.txt
-```
 
----
 
-## Demo Script
-
-ใช้พูดตอนนำเสนอหรืออัดวิดีโอ Demo
-
-```text
-สวัสดีครับ โปรเจกต์นี้ชื่อ File Guardian เป็นโปรแกรม CLI Tool ที่เขียนด้วยภาษา Rust
-
-โปรแกรมนี้ใช้สำหรับตรวจสอบความเปลี่ยนแปลงของไฟล์ในโฟลเดอร์ เช่น ไฟล์ถูกแก้ไข ไฟล์ใหม่ถูกเพิ่ม หรือไฟล์เดิมถูกลบ
-
-แนวคิดของโปรเจกต์นี้เกี่ยวข้องกับ Security เพราะใช้หลักการ File Integrity Checking โดยโปรแกรมจะสร้างค่า SHA-256 hash ของแต่ละไฟล์ แล้วนำไปเปรียบเทียบกับค่าเดิมที่เก็บไว้ใน baseline
-
-เริ่มแรกผมจะสร้างโฟลเดอร์ test_folder และสร้างไฟล์ตัวอย่าง 3 ไฟล์ คือ config.txt, notes.txt และ data.txt
-
-จากนั้นผมจะรันคำสั่ง cargo run -- scan ./test_folder เพื่อสร้าง baseline ครั้งแรก
-
-โปรแกรมจะถาม password แล้วนำ baseline ไปเข้ารหัสเป็นไฟล์ baseline.enc ทำให้เปิดอ่านตรง ๆ ไม่ได้
-
-ต่อมาผมจะทดสอบโดยแก้ไขไฟล์ notes.txt เพิ่มไฟล์ใหม่ชื่อ secret.txt และลบไฟล์ config.txt
-
-หลังจากนั้นรันคำสั่ง cargo run -- check ./test_folder เพื่อให้โปรแกรมตรวจสอบความเปลี่ยนแปลง
-
-ผลลัพธ์ที่ได้คือ โปรแกรมตรวจพบว่า config.txt ถูกลบ notes.txt ถูกแก้ไข secret.txt เป็นไฟล์ใหม่ และ data.txt ยังไม่เปลี่ยนแปลง
-
-สุดท้ายโปรแกรมจะสร้าง report.txt เพื่อบันทึกผลการตรวจสอบทั้งหมด
-
-เหตุผลที่เลือกทำโปรเจกต์นี้ เพราะเป็น Security Tool ที่เข้าใจง่าย ใช้งานได้จริง และเหมาะกับการฝึกเขียน Rust แบบ CLI
-```
-
----
-
-## Git Repository
-
-Repository:
-
-```text
 https://github.com/LINAPS5/InternPhoLX_D8-9_file-Guardian
-```
+
 
 ---
 
